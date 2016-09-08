@@ -9,7 +9,7 @@
 import Foundation
 
 
-class Brain: NSObject
+class TheBrain
 {
     let alphabetDict = ["a" : "z",
                         "b" : "y",
@@ -79,15 +79,52 @@ class Brain: NSObject
         
         for index in 0..<arrayOfLetters.count
         {
-            let answer = alphabetDict["\(arrayOfLetters[index])"]
-            result.append(answer!)
+            let chr = "\(arrayOfLetters[index])"
+            if (!(chr >= "a" && chr <= "z") && !(chr >= "A" && chr <= "Z") ) {
+                result.append(chr)
+            }
+            else
+            {
+                let charToEncode = alphabetDict["\(arrayOfLetters[index])"]
+                result.append(charToEncode!)
+            }
         }
         
-        let theResult = result.joined(separator: "")
-        //literal value
-        print(theResult)
+        
+        let newStringEncoded = result.joined(separator: "")
         
         
-        return theResult
+        return newStringEncoded
+        
+        
     }
+    
+    
+    func decodeText(wordToDecode: String) -> String
+    {
+        var result2 = [String]()
+        var array2 = Array(wordToDecode.characters)
+        
+        for index in 0..<array2.count
+        {
+            let chr = "\(array2[index])"
+            if (!(chr >= "a" && chr <= "z") && !(chr >= "A" && chr <= "Z") ) {
+                result2.append(chr)
+            }
+            else
+            {
+                let charToDecode = alphabetDict["\(array2[index])"]
+                result2.append(charToDecode!)
+            }
+        }
+        
+        let newStringDecoded = result2.joined(separator: "")
+        
+        
+        return newStringDecoded
+        
+    }
+    
+    
+    
 }
